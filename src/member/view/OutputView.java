@@ -16,4 +16,8 @@ public class OutputView {
     public static void printLogoutSucceed() {
         System.out.println("로그아웃 되었습니다.");
     }
+
+    public static void printLogoutFail() {
+        System.out.println("비회원은 로그아웃 할 수 없습니다.");
+    }
 }

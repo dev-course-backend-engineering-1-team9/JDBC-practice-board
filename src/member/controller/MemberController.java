@@ -54,6 +54,10 @@ public class MemberController {
     }
 
     private void logout() {
+        if(loginMember == null) {
+            OutputView.printLogoutFail();
+            return;
+        }
         MemberController.loginMember = null;
         OutputView.printLogoutSucceed();
     }

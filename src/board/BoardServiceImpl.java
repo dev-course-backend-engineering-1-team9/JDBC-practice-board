@@ -51,7 +51,7 @@ public class BoardServiceImpl implements BoardService{
         ResultSet rs = null;
         List<Board> list = new ArrayList<>();
         try {
-            String SQL = "select board_id,title,content,created_at,modified_at,is_deleted from board b where b.is_deleted = 'N'";
+            String SQL = "select board_id,member_id,title,content,created_at,modified_at,is_deleted from board b where b.is_deleted = 'N'";
             conn = DBUtil.getConnection();
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
@@ -64,7 +64,9 @@ public class BoardServiceImpl implements BoardService{
                 IsDeleted isDeleted = IsDeleted.valueOf(rs.getString("is_deleted"));
                 Board board = new Board(title, content, createAt, modifiedAt, isDeleted);
                 Long boarId = rs.getLong("board_id");
+                Long memberId = rs.getLong("member_id");
                 board.setBoard_id(boarId);
+                board.setMember_id(memberId);
                 list.add(board);
             }
         }
@@ -84,19 +86,23 @@ public class BoardServiceImpl implements BoardService{
         ResultSet rs = null;
         Board board = null;
         try {
-            String SQL = "select board_id,title,content,created_at,modified_at,is_deleted from board where board_id = " + boardId;
+            String SQL = "select board_id,member_id,title,content,created_at,modified_at,is_deleted from board b where b.board_id = " + boardId+" and b.is_deleted = 'N'" ;
             conn = DBUtil.getConnection();
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();
             if(rs.next()) {
+                Long memberId = rs.getLong("member_id");
                 String title = rs.getString("title");
                 String content = rs.getString("content");
                 LocalDateTime createdAt = rs.getTimestamp("created_at").toLocalDateTime();
                 Timestamp modifiedTimestamp = rs.getTimestamp("modified_at");
                 LocalDateTime modifiedAt = (modifiedTimestamp != null) ? modifiedTimestamp.toLocalDateTime() : null;
                 IsDeleted isDeleted = IsDeleted.valueOf(rs.getString("is_deleted"));
+                Long boarId = rs.getLong("board_id");
+                Long member_Id = rs.getLong("member_id");
                 board = new Board(title, content, createdAt, modifiedAt, isDeleted);
                 board.setBoard_id(boardId);
+                board.setMember_id(member_Id);
             }
         }
         catch (SQLException e){

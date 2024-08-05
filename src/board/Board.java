@@ -8,7 +8,7 @@ public class Board {
     private Long board_id;
     private String title;
     private String content;
-
+    private Long member_id;
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
 
@@ -70,6 +70,9 @@ public class Board {
     public void setIsDeleted(IsDeleted isDeleted) {
         this.isDeleted = isDeleted;
     }
+    public Long getMember_id() {return member_id;}
+
+    public void setMember_id(Long member_id) { this.member_id = member_id; }
 
     @Override
     public String toString() {

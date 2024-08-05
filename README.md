@@ -32,77 +32,7 @@ EOL
 
 echo "설정파일 생성 완료 자신이 사용하는 DB 정보로 수정해주세요 !"
 ```
-### 5. DB 테이블 생성
-```bash
-#!/bin/bash
 
-# DBConfig 파일 정보 불러오기
-DB_CONFIG_FILE="src/resources/dbconfig.properties"
-DB_USER=$(grep 'username' $DB_CONFIG_FILE | cut -d'=' -f2)
-DB_PASSWORD=$(grep 'password' $DB_CONFIG_FILE | cut -d'=' -f2)
-DB_URL=$(grep 'url' $DB_CONFIG_FILE | cut -d'=' -f2)
-
-# DB URL 에서 HOST, DB_NAME 추출
-DB_HOST=$(echo $DB_URL | awk -F[/:] '{print $4}')
-DB_NAME=$(echo $DB_URL | awk -F[/:] '{print $5}')
-
-# SQL script
-SQL_SCRIPT=$(cat <<EOF
-DROP TABLE IF EXISTS \`Comment\`;
-DROP TABLE IF EXISTS \`Board\`;
-DROP TABLE IF EXISTS \`Member\`;
-
-CREATE TABLE \`Comment\` (
-    comment_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    board_id BIGINT NOT NULL,
-    member_id BIGINT NOT NULL,
-    parent_id BIGINT NULL COMMENT '원래 댓글 번호',
-    content TEXT NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT NOW(),
-    modified_at DATETIME NOT NULL,
-    is_deleted ENUM('Y', 'N')  NOT NULL DEFAULT 'N'
-);
-
-CREATE TABLE \`Member\` (
-    member_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    email VARCHAR(500) NOT NULL COMMENT '로그인 아이디',
-    password VARCHAR(500) NOT NULL,
-    nickname VARCHAR(500) NOT NULL COMMENT '회원 닉네임',
-    created_at DATETIME NOT NULL DEFAULT NOW(),
-    is_deleted ENUM('Y', 'N')  NOT NULL DEFAULT 'N'
-);
-
-CREATE TABLE \`Board\` (
-    board_id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    member_id BIGINT NOT NULL,
-    title VARCHAR(50) NOT NULL,
-    content TEXT NOT NULL,
-    created_at DATETIME NOT NULL DEFAULT NOW(),
-    modified_at DATETIME NOT NULL,
-    is_deleted ENUM('Y', 'N')  NOT NULL DEFAULT 'N'
-);
-
-ALTER TABLE Board ADD CONSTRAINT \`fk_member_board\` FOREIGN KEY (member_id)
-    REFERENCES Member(member_id);
-
-ALTER TABLE Comment ADD CONSTRAINT \`fk_member_comment\` FOREIGN KEY (member_id)
-    REFERENCES Member(member_id);
-
-ALTER TABLE Comment ADD CONSTRAINT \`fk_board_comment\` FOREIGN KEY (board_id)
-    REFERENCES Board(board_id);
-
-ALTER TABLE Comment ADD CONSTRAINT \`fk_comment_comment\` FOREIGN KEY (parent_id)
-    REFERENCES Comment(comment_id);
-EOF
-)
-
-# Execute the SQL script
-mysql -h $DB_HOST -u $DB_USER -p$DB_PASSWORD $DB_NAME -e "$SQL_SCRIPT"
-
-echo "DB 테이블 생성 완료 !"
-```
-
-### 6. 프로젝트 실행
 
 ## 주요 기능
 ### 게시판 기능
@@ -118,6 +48,22 @@ echo "DB 테이블 생성 완료 !"
 - 댓글 삭제
 - 댓글 수정
 - 게시글의 전체 댓글 조회
+
+![스크린샷 2024-08-05 오후 2 27 03](https://github.com/user-attachments/assets/fea4412c-6c00-4871-a572-e742fbd6ff8b)
+
+### 1. 댓글 작성
+![스크린샷 2024-08-05 오후 2 27 36](https://github.com/user-attachments/assets/8f797c7c-edb5-4737-8d45-eced39d0c84d)
+
+### 2. 게시글의 댓글 전체 조회
+![스크린샷 2024-08-05 오후 2 27 46](https://github.com/user-attachments/assets/a10183ea-1e66-48eb-a034-45900f26f07b)
+
+
+### 3. 댓글 수정
+![스크린샷 2024-08-05 오후 2 28 03](https://github.com/user-attachments/assets/951d7914-c624-4fd0-b01b-c2da5114f4ef)
+
+### 4. 댓글 삭제
+![스크린샷 2024-08-05 오후 2 28 10](https://github.com/user-attachments/assets/1f370006-2656-46f2-9559-cc3da354a48e)
+
 
 ### 회원 기능
 - 회원 가입

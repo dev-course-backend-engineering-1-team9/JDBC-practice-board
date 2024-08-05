@@ -12,10 +12,9 @@ public class BoardServiceImplByAnyeon00 implements BoardService{
     ResultSet rs = null;
     @Override
     public Long writeBoard(String title, String content) {
-//        Board board = new Board(title, content, null, null, IsDeleted.N);
         conn = DBUtil.getConnection();
         Long writerId = null;
-        writerId = 1L;
+        writerId = 1L;  //작성자 member_id 찾아오는 메서드로 변경 필요
         String SQL = "INSERT INTO board(member_id, title, content) VALUES (?, ?, ?)";
         try {
             pstmt = conn.prepareStatement(SQL);
@@ -23,7 +22,6 @@ public class BoardServiceImplByAnyeon00 implements BoardService{
             pstmt.setString(2, title);
             pstmt.setString(3, content);
             pstmt.executeUpdate();
-            System.out.println("BoardServiceImplByAnyeon00.writeBoard");
         } catch (SQLException e) {
             e.printStackTrace();
             return (long) -1;

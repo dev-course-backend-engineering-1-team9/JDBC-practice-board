@@ -3,6 +3,7 @@ package member.view;
 import common.IsDeleted;
 import member.Member;
 import member.constant.MemberMenu;
+import member.controller.MemberController;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +16,10 @@ public class InputView {
     public static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 
     public static MemberMenu printMenu() throws IOException {
+        System.out.println();
+        if(MemberController.loginMember != null) {
+            System.out.println(MemberController.loginMember);
+        }
         System.out.println();
         System.out.println("----- 회원 기능 -----");
         System.out.println("1. 회원 가입");

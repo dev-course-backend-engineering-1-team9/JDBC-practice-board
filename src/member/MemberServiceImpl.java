@@ -25,6 +25,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member login(String email, String password) throws SQLException {
+
         connection = DBUtil.getConnection();
         Member loginMember = memberRepository.login(connection, email, password);
         if(loginMember == null) {

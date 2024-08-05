@@ -4,6 +4,7 @@ public enum MemberMenu {
 
     JOIN("1"),
     LOGIN("2"),
+    LOGOUT("3"),
     EXIT("-1"),
     NONE("0");
 

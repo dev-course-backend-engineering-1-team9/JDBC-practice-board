@@ -12,4 +12,8 @@ public class OutputView {
     public static void printLoginSucceed(String nickname) {
         System.out.printf("로그인 성공! 환영합니다 %s님!\n", nickname);
     }
+
+    public static void printLogoutSucceed() {
+        System.out.println("로그아웃 되었습니다.");
+    }
 }

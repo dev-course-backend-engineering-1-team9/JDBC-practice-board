@@ -24,6 +24,7 @@ public class MemberController {
                 switch (selected) {
                     case JOIN ->  join();
                     case LOGIN -> login();
+                    case LOGOUT -> logout();
                     case EXIT -> { return; }
                     default -> OutputView.printRetry();
                 }
@@ -44,8 +45,16 @@ public class MemberController {
     }
 
     private void login() throws IOException, SQLException {
+        if(MemberController.loginMember != null) {
+            throw new SQLException("이미 로그인 하셨습니다.");
+        }
         Member inputMember = InputView.printLogin();
         Member loginMember = memberService.login(inputMember.getEmail(), inputMember.getPassword());
         OutputView.printLoginSucceed(loginMember.getNickname());
+    }
+
+    private void logout() {
+        MemberController.loginMember = null;
+        OutputView.printLogoutSucceed();
     }
 }

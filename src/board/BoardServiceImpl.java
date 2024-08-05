@@ -1,5 +1,7 @@
 package board;
 
+import static member.controller.MemberController.loginMember;
+
 import common.DBUtil;
 import common.IsDeleted;
 
@@ -24,7 +26,22 @@ public class BoardServiceImpl implements BoardService{
 
     @Override
     public Long writeBoard(String title, String content) {
-        return 0L;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        conn = DBUtil.getConnection();
+        Long writerId = loginMember.getMemberId();  //작성자 member_id 찾아오는 메서드로 변경 필요
+        String SQL = "INSERT INTO board(member_id, title, content) VALUES (?, ?, ?)";
+        try {
+            ps = conn.prepareStatement(SQL);
+            ps.setLong(1, writerId);
+            ps.setString(2, title);
+            ps.setString(3, content);
+            return (long) ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return (long) -1;
+        }
     }
 
     @Override
@@ -34,7 +51,7 @@ public class BoardServiceImpl implements BoardService{
         ResultSet rs = null;
         List<Board> list = new ArrayList<>();
         try {
-            String SQL = "select board_id,title,content,created_at,modified_at,is_deleted from board";
+            String SQL = "select board_id,title,content,created_at,modified_at,is_deleted from board b where b.is_deleted = 'N'";
             conn = DBUtil.getConnection();
             ps = conn.prepareStatement(SQL);
             rs = ps.executeQuery();

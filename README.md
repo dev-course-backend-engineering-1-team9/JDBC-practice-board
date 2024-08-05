@@ -23,11 +23,11 @@ mkdir -p src/resources
 # Create the dbconfig.properties file with the specified content
 cat <<EOL > src/resources/dbconfig.properties
 # 본인 DB URL 입력
-url=jdbc:mysql://127.0.0.1:3306/board
+url=jdbc:mysql://127.0.0.1:3306/mini_board
 # 본인 DB 계정 입력
 username=root
 # 본인 DB 비밀번호 입력
-password=1234
+password=140716
 EOL
 
 echo "설정파일 생성 완료 자신이 사용하는 DB 정보로 수정해주세요 !"

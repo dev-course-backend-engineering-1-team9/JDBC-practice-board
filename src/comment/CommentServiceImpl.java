@@ -109,7 +109,7 @@ public class CommentServiceImpl implements CommentService{
                 "m.nickname " +
                 "FROM Comment c " +
                 "JOIN Member m ON c.member_id = m.member_id " +
-                "WHERE c.board_id = ? " +
+                "WHERE c.board_id = ? and c.is_deleted = 'N' " +
                 "ORDER BY " +
                 "COALESCE(c.parent_id, c.comment_id), " +
                 "c.parent_id IS NOT NULL, " +

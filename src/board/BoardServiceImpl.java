@@ -170,13 +170,14 @@ public class BoardServiceImpl implements BoardService{
     public List<Board> searchBoard(String searchText) {
         List<Board> searchResultBoard = new ArrayList<>();
         try {
-            String sql = "SELECT title,content,created_at,modified_at,is_deleted FROM board WHERE title LIKE ? AND is_deleted = 'N'";
+            String sql = "SELECT board_id,title,content,created_at,modified_at,is_deleted FROM board WHERE title LIKE ? AND is_deleted = 'N'";
             connection = DBUtil.getConnection();
             ps = connection.prepareStatement(sql);
             ps.setString(1, "%" + searchText + "%");
             resultSet = ps.executeQuery();
             while(resultSet.next()){
                 searchResultBoard.add(new Board(
+                        resultSet.getLong("board_id"),
                         resultSet.getString("title"),
                         resultSet.getString("content"),
                         resultSet.getTimestamp("created_at").toLocalDateTime(),

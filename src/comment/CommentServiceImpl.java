@@ -1,5 +1,7 @@
 package comment;
 
+import static member.controller.MemberController.loginMember;
+
 import common.DBUtil;
 import common.IsDeleted;
 import java.sql.Connection;
@@ -17,15 +19,14 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Long writeComment(String content, Long boardId, Long parentId) {
-        String sql = "INSERT INTO Comment (board_id, member_id, parent_id, content, created_at, is_deleted) "
-                + "VALUES (?, ?, ?, ?, NOW(), 'N')";
+        String sql = "INSERT INTO Comment (board_id, member_id, parent_id, content, created_at, modified_at, is_deleted) "
+                + "VALUES (?, ?, ?, ?, NOW(), NOW(), 'N')";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            // TODO : memberId로 변수 채워줘야함
             pstmt.setLong(1, boardId);
-            pstmt.setLong(2, 1L);
+            pstmt.setLong(2, loginMember.getMemberId());
 
             if (parentId == null) {
                 pstmt.setNull(3, java.sql.Types.BIGINT);
@@ -44,7 +45,7 @@ public class CommentServiceImpl implements CommentService{
 
     @Override
     public Long deleteComment(Long commentId) {
-        String sql = "UPDATE Comment SET is_deleted = 'Y' WHERE comment_id = ?";
+        String sql = "UPDATE Comment SET is_deleted = 'Y', modified_at = NOW() WHERE comment_id = ?";
 
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

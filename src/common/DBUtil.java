@@ -6,9 +6,12 @@ import java.sql.SQLException;
 
 public class DBUtil {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/workshop";
+//    private static final String URL = "jdbc:mysql://127.0.0.1:3306/workshop";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "root";
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/team9_jdbcpj";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static final String PASSWORD = "Thafi0@5ai8&6";
 
     public static Connection getConnection() {
         Connection conn = null;

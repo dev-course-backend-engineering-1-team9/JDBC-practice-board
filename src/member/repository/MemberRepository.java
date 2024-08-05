@@ -15,15 +15,15 @@ public class MemberRepository {
 
     private PreparedStatement pstmt;
     private ResultSet rs;
-    public int join(Connection connection, String email, String password, String nickname) throws SQLException {
+    public int join(Connection connection, Member member) throws SQLException {
         int result = 0;
 
         try {
             String sql = "INSERT INTO Member(email, password, nickname) VALUES (?,?,?)";
             pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, email);
-            pstmt.setString(2, password);
-            pstmt.setString(3, nickname);
+            pstmt.setString(1, member.getEmail());
+            pstmt.setString(2, member.getPassword());
+            pstmt.setString(3, member.getPassword());
             result = pstmt.executeUpdate();
         } catch(SQLException e) {
             e.printStackTrace();
@@ -52,7 +52,7 @@ public class MemberRepository {
                 String findNickname = rs.getString("nickname");
                 LocalDateTime createdAt = parseTime(rs.getString("created_at"));
 
-                loginMember = new Member(findEmail, findPassword, findNickname, createdAt, IsDeleted.N);
+                loginMember = new Member(findEmail, findPassword, null, findNickname, createdAt, IsDeleted.N);
                 loginMember.setMemberId(findMemberId);
             }
         } catch(SQLException e) {

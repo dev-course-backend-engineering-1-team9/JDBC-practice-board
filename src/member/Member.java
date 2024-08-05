@@ -8,15 +8,17 @@ public class Member {
     private Long memberId;
     private String email;
     private String password;
+    private String confirmPassword;
     private String nickname;
 
     private LocalDateTime createAt;
     private IsDeleted isDeleted;
 
-    public Member(String email, String password, String nickname, LocalDateTime createAt,
+    public Member(String email, String password, String confirmPassword, String nickname, LocalDateTime createAt,
                   IsDeleted isDeleted) {
         this.email = email;
         this.password = password;
+        this.confirmPassword = confirmPassword;
         this.nickname = nickname;
         this.createAt = createAt;
         this.isDeleted = isDeleted;
@@ -44,6 +46,10 @@ public class Member {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
     public String getNickname() {
@@ -76,6 +82,7 @@ public class Member {
                 "memberId=" + memberId +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
                 ", nickname='" + nickname + '\'' +
                 ", createAt=" + createAt +
                 ", isDeleted=" + isDeleted +

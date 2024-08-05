@@ -23,6 +23,7 @@ public class CommentServiceImpl implements CommentService{
         try (Connection conn = DBUtil.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
+            // TODO : memberId로 변수 채워줘야함
             pstmt.setLong(1, boardId);
             pstmt.setLong(2, 1L);
 

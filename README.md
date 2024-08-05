@@ -63,8 +63,47 @@ EOL
 
 
 ### 회원 기능
-- 회원 가입
-- 로그인
+### 1. 회원가입
+#### 회원가입 성공
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/fe5daa7e-a978-4b20-90c8-94570c06f06d">
+
+#### 입력한 이메일이 형식에 맞지 않는 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/e074b0f2-392c-46b8-a6db-41b28c93c99a">
+
+#### 입력한 비밀번호와 확인용 비밀번호 값이 다른 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/2f1bc49b-0125-4b15-a006-d13e9657d760">
+
+#### 아이디와 비밀번호를 빈값으로 전달한 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/efb837f9-f583-47c0-b79d-40b579db4a0b">
+
+#### 비밀번호와 비밀번호 확인값을 빈값으로 전달한 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/30f34ca1-1c96-4d2e-9b41-e5d4e9b4c06b">
+
+
+### 2. 로그인
+#### 로그인 성공
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/711c0518-3119-438f-952b-c5e99556ecf2">
+
+#### 로그인 실패(아이디를 틀리게 입력)
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/d95d9f31-9021-4305-8074-1fcacdafd4e3">
+
+#### 로그인 실패(비밀번호를 틀리게 입력)
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/ba49ed05-2822-468d-b37b-13fef739d902">
+
+#### 로그인 실패(아이디, 비밀번호를 틀리게 입력)
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/591cb23b-4c75-4bd2-b7b8-6e15aef30f51">
+
+#### 회원이 다시 로그인을 시도하는 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/5de510b9-afa2-4935-805a-d6279c650e0c">
+
+
+### 3. 로그아웃
+#### 로그아웃 성공
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/fba10a6b-7595-4375-b39c-742f2619224c">
+
+#### 비회원이 로그아웃을 시도하는 경우
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/2fa2ff7e-dc4e-429c-b865-06fd61340f01">
+
 
 ##  ERD
 ![ERD](https://github.com/user-attachments/assets/35c11868-5e3a-43b2-8798-6d43fb2f480e)

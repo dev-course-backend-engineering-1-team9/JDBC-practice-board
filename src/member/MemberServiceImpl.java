@@ -6,6 +6,10 @@ import member.repository.MemberRepository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Pattern;
 
 public class MemberServiceImpl implements MemberService{
 
@@ -16,9 +20,22 @@ public class MemberServiceImpl implements MemberService{
         this.memberRepository = memberRepository;
     }
     @Override
-    public int join(String email, String password, String nickname) throws SQLException {
+    public int join(Member member) throws SQLException {
+        if(!(!member.getEmail().isEmpty() && !member.getPassword().isEmpty() && !member.getNickname().isEmpty())) {
+            throw new RuntimeException("아이디, 비밀번호, 닉네임은 필수 입력값입니다.");
+        }
+
+        String emailRegex = "^[\\w!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+        if(!Pattern.matches(emailRegex, member.getEmail())) {
+            throw new RuntimeException("입력한 아이디가 이메일 형식이 아닙니다.");
+        }
+
+        if(!member.getPassword().equals(member.getConfirmPassword())) {
+            throw new RuntimeException("입력한 비밀번호가 확인용 비밀번호와 다릅니다.");
+        }
+
         connection = DBUtil.getConnection();
-        int  result = memberRepository.join(connection, email, password, nickname);
+        int  result = memberRepository.join(connection, member);
         DBUtil.close(connection);
         return result;
     }

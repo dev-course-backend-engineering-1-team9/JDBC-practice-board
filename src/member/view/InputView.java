@@ -36,9 +36,11 @@ public class InputView {
         String email = BR.readLine();
         System.out.print("비밀번호를 입력하세요: ");
         String password = BR.readLine();
+        System.out.print("확인을 위해 입력한 비밀번호를 한번 더 입력하세요: ");
+        String confirmPassword = BR.readLine();
         System.out.print("닉네임을 입력하세요: ");
         String nickname = BR.readLine();
-        return new Member(email, password, nickname, null, null);
+        return new Member(email, password, nickname, confirmPassword, null, null);
     }
 
     public static Member printLogin() throws IOException {
@@ -46,6 +48,6 @@ public class InputView {
         String email = BR.readLine();
         System.out.print("비밀번호를 입력하세요: ");
         String password = BR.readLine();
-        return new Member(email, password, null, null, null);
+        return new Member(email, password, null, null, null, null);
     }
 }

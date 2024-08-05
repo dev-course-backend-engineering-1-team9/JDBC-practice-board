@@ -28,7 +28,7 @@ public class MemberController {
                     case EXIT -> { return; }
                     default -> OutputView.printRetry();
                 }
-            } catch (IOException | SQLException e) {
+            } catch (IOException | SQLException | RuntimeException e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -36,7 +36,7 @@ public class MemberController {
 
     private void join() throws IOException, SQLException {
         Member newMember = InputView.printJoin();
-        int result = memberService.join(newMember.getEmail(), newMember.getPassword(), newMember.getNickname());
+        int result = memberService.join(newMember);
         if(result != 1) {
             throw new SQLException("회원가입 실패");
         }

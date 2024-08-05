@@ -10,7 +10,7 @@ public class OutputView {
     }
 
     public static void printLoginSucceed(String nickname) {
-        System.out.printf("로그인 성공! 환영합니다 %s님!\n", nickname);
+        System.out.println("로그인 성공");
     }
 
     public static void printLogoutSucceed() {

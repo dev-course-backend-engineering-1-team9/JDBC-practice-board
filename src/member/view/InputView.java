@@ -16,14 +16,15 @@ public class InputView {
     public static final BufferedReader BR = new BufferedReader(new InputStreamReader(System.in));
 
     public static MemberMenu printMenu() throws IOException {
-        System.out.println();
         if(MemberController.loginMember != null) {
-            System.out.println(MemberController.loginMember);
+            System.out.println();
+            System.out.printf("환영합니다 %s님!", MemberController.loginMember.getNickname());
         }
         System.out.println();
         System.out.println("----- 회원 기능 -----");
         System.out.println("1. 회원 가입");
         System.out.println("2. 로그인");
+        System.out.println("3. 로그아웃");
         System.out.println("-1. 뒤로가기");
         System.out.println("------------------------");
         System.out.print("1번 2번 중에서 고르세요: ");

@@ -1,9 +1,11 @@
 package member;
 
+import java.sql.SQLException;
+
 public interface MemberService {
 
-    Long join(String email, String password, String nickname);
+    int join(String email, String password, String nickname) throws SQLException;
 
-    Long login(String email, String password);
+    Member login(String email, String password) throws SQLException;
 
 }

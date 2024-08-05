@@ -7,18 +7,48 @@ public class Comment {
 
     private Long commentId;
     private String content;
+    private Long boardId;
+    private Long memberId;
+    private Long parentId;
 
     private LocalDateTime createAt;
     private LocalDateTime modifiedAt;
 
     private IsDeleted isDeleted;
 
-    public Comment(String content, LocalDateTime createAt, LocalDateTime modifiedAt,
+    public Comment(String content, Long boardId, Long memberId, Long parentId, LocalDateTime createAt, LocalDateTime modifiedAt,
                    IsDeleted isDeleted) {
         this.content = content;
+        this.boardId = boardId;
+        this.memberId = memberId;
+        this.parentId = parentId;
         this.createAt = createAt;
         this.modifiedAt = modifiedAt;
         this.isDeleted = isDeleted;
+    }
+
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     public Long getCommentId() {

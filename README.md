@@ -4,35 +4,22 @@
 ```bash
 git clone
 ```
-### 2. mysql jdbc connector 다운로드 및 라이브러리 추가
-2-1. 링크의 Platform Independent 다운로드
-
-https://dev.mysql.com/downloads/connector/j/
-
-
-2-2. Project Structure - Libraries - + - Java - mysql-connector-j-9.0.0.jar 추가
-
-### 4. DB 연결 정보 Properties 파일 생성
+### 2. DB 연결 정보 Properties 파일 생성
 🚨 본인이 사용할 정보로 필수적으로 변경해주세요 !
 ```bash
 #!/bin/bash
 
-# Create the resources directory under src
 mkdir -p src/resources
 
-# Create the dbconfig.properties file with the specified content
 cat <<EOL > src/resources/dbconfig.properties
 # 본인 DB URL 입력
-url=jdbc:mysql://127.0.0.1:3306/mini_board
+url=jdbc:mysql://127.0.0.1:3306/board
 # 본인 DB 계정 입력
 username=root
 # 본인 DB 비밀번호 입력
-password=140716
+password=123456
 EOL
-
-echo "설정파일 생성 완료 자신이 사용하는 DB 정보로 수정해주세요 !"
 ```
-
 
 ## 주요 기능
 ### 게시판 기능
@@ -42,6 +29,16 @@ echo "설정파일 생성 완료 자신이 사용하는 DB 정보로 수정해�
 - 게시글 전체 조회 (목록 조회)
 - 게시글 개별 조회 (상세 조회)
 - 게시글 제목으로 검색
+ 
+### 1. 게시글 작성
+### 2. 게시글 삭제
+![게시글 삭제](https://github.com/user-attachments/assets/0d597cc1-5d6d-41da-a9e3-b2b54b717033)
+### 3. 게시글 수정
+![게시글 수정](https://github.com/user-attachments/assets/f9048c51-4d2e-473d-8e84-b4b84f26aed2)
+### 4. 게시글 전체 조회
+### 5. 게시글 개별 조회
+### 6. 게시글 제목으로 검색
+![게시글 제목으로 검색](https://github.com/user-attachments/assets/b2b18953-75ee-44d6-83cf-dc6e4ef0f4a6)
 
 ### 댓글 기능
 
@@ -59,6 +56,7 @@ echo "설정파일 생성 완료 자신이 사용하는 DB 정보로 수정해�
 
 ### 4. 댓글 삭제
 ![스크린샷 2024-08-05 오후 2 28 10](https://github.com/user-attachments/assets/1f370006-2656-46f2-9559-cc3da354a48e)
+
 
 
 ### 회원 기능

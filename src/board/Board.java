@@ -22,6 +22,14 @@ public class Board {
         this.modifiedAt = modifiedAt;
         this.isDeleted = isDeleted;
     }
+    public Board(Long board_id, String title, String content, LocalDateTime createAt, LocalDateTime modifiedAt,
+                 IsDeleted isDeleted) {
+        this.board_id = board_id;
+        this.title = title;
+        this.content = content;
+        this.modifiedAt = modifiedAt;
+        this.isDeleted = isDeleted;
+    }
 
     public Long getBoard_id() {
         return board_id;

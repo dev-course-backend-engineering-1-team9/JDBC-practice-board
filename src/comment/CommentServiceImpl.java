@@ -183,12 +183,12 @@ public class CommentServiceImpl implements CommentService{
             String nickname = memberNicknames.get(comment.getMemberId());
             if (comment.getParentId() == null) {
                 if (lastCommentId != null) {
-                    System.out.println(); // 본 댓글 사이에 빈 줄을 추가
+                    System.out.println();
                 }
-                System.out.println(nickname + " (ID: " + comment.getCommentId() + ") : " + comment.getContent());
+                System.out.println(nickname + " (ID: " + comment.getMemberId() + ") : " + comment.getContent());
                 lastCommentId = comment.getCommentId();
             } else {
-                System.out.println("    --> " + nickname + " (ID: " + comment.getCommentId() + ") : " + comment.getContent());
+                System.out.println("    --> " + nickname + " (ID: " + comment.getMemberId() + ") : " + comment.getContent());
             }
         }
     }

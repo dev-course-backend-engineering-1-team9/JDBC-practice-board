@@ -73,15 +73,32 @@ public class Main {
                 }
                 case "2" -> {
                     List<Board> allBoard = boardService.findAllBoard();
-                    for (Board board : allBoard) {
-                        System.out.println("board = " + board);
+                    if(allBoard.isEmpty())
+                        System.out.println("게시글이 존재하지 않습니다.");
+                    else{
+                        System.out.println("전체 게시글 목록 : ");
+                        for(Board board : allBoard){
+                            System.out.printf("게시글 ID: %d 제목: %s \n",
+                                    board.getBoard_id(), board.getTitle());
+                        }
                     }
                 }
                 case "3" -> {
                     System.out.println("게시글 아이디 : ");
                     Long boardId = Long.parseLong(br.readLine());
                     Board boardById = boardService.findBoardById(boardId);
-                    System.out.println("boardById = " + boardById);
+                    if(boardById == null){
+                        System.out.println("해당 아이디의 게시글이 존재하지 않습니다.");
+                    }
+                    else {
+                        System.out.println("게시글 상세보기:");
+                        System.out.println("게시글 ID : " + boardById.getBoard_id());
+                        System.out.println("제목 : " + boardById.getTitle());
+                        System.out.println("내용 : " + boardById.getContent());
+                        System.out.println("작성일자 : " + boardById.getCreateAt());
+                        System.out.println("최종 수정일자 : " + boardById.getModifiedAt());
+                        System.out.println("작성자 ID : " + boardById.getMember_id());
+                    }
                 }
                 case "4" -> {
                     System.out.println("검색어를 입력하세요 : ");

@@ -31,6 +31,7 @@ EOL
 - 게시글 제목으로 검색
  
 ### 1. 게시글 작성
+![스크린샷 2024-08-05 172911](https://github.com/user-attachments/assets/107da544-28ff-497e-97aa-d2a6b626f001)
 ### 2. 게시글 삭제
 ![게시글 삭제](https://github.com/user-attachments/assets/0d597cc1-5d6d-41da-a9e3-b2b54b717033)
 ### 3. 게시글 수정

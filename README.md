@@ -36,7 +36,9 @@ EOL
 ### 3. 게시글 수정
 ![게시글 수정](https://github.com/user-attachments/assets/f9048c51-4d2e-473d-8e84-b4b84f26aed2)
 ### 4. 게시글 전체 조회
+![전체 조회 게시글 있음](https://github.com/user-attachments/assets/892dce47-e97a-4341-9f26-86dfdc9f0cfb)
 ### 5. 게시글 개별 조회
+![개별 조회](https://github.com/user-attachments/assets/18cdbba7-0e7c-4bba-b4c0-9463a686f4cc)
 ### 6. 게시글 제목으로 검색
 ![게시글 제목으로 검색](https://github.com/user-attachments/assets/b2b18953-75ee-44d6-83cf-dc6e4ef0f4a6)
 
